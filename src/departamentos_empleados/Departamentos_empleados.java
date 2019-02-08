@@ -105,7 +105,7 @@ public class Departamentos_empleados {
             
         }//fin del ciclo for
         
-        short shrVector[]=new short[5];
+        float shrVector[]=new float[5];//
         
         //aqui rellenamos el vector en su posicion especifica con el total de los sueldos sumados anteriormente en el switch
         shrVector[0]=shrSuma_sueldos1;

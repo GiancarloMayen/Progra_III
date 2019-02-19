@@ -9,6 +9,7 @@ public class Departamentos_empleados {
         
     */
     public static void main(String[] args) {
+        decidir_isr_empleado die=new decidir_isr_empleado();
         final float IGSS=4.83f;
         Scanner entrada=new Scanner(System.in);//declaramos una variable de tipo scanner 
         
@@ -17,7 +18,7 @@ public class Departamentos_empleados {
         //creamos un vector de 5 posiciones que contiene los nombres de cada departamento de la empresa
         String [] strDepartamentos={"Ingenieria","Recursos H.","Contabilidad","Auditoria","Huachicolero"};
         //declaramos una matriz de tipo short con dimensiones de: 10 filas y 5 columnas
-        float matrix[][]=new float[10][8];
+        float matrix[][]=new float[10][9];
         
         
         /*columnas de la matriz:
@@ -27,6 +28,7 @@ public class Departamentos_empleados {
         4:  van el igss de las personas
         5:  van el isr de las personas
         6:  va el descuento del bantrab
+        
         */
         
         
@@ -40,36 +42,43 @@ public class Departamentos_empleados {
             
             float fBonificaciones=250;
             
-            float shrComisiones=(float)((Math.random()*700)+200);
+            float ftComisiones=(float)((Math.random()*700)+200);
             
-            float shrIGSS=(float)(ftSueldos*IGSS)/100;
-            
+            float ftIGSS=(float)(ftSueldos*IGSS)/100;
+            byte btIsrRandom=(byte)((Math.random()*2)+1);
+            if(btIsrRandom==2){
             float isr=0;
             if(ftSueldos>2600 && ftSueldos<5000){
-                isr=(float)(ftSueldos*3)/100;
+                die.setBtIsrRandom(isr=(float)(ftSueldos*3)/100);
             }
             else if(ftSueldos>5001 && ftSueldos<10000){
-                isr=(float)(ftSueldos*5)/100;
+                 die.setBtIsrRandom(isr=(float)(ftSueldos*5)/100);
             }
             else if(ftSueldos>10001){
-                isr=(float)(ftSueldos*10)/100;
+                 die.setBtIsrRandom(isr=(float)(ftSueldos*10)/100);
+            }
+            }else{
+                die.setBtIsrRandom(0);
             }
             
             float fBancoTrabajadores=(float)((Math.random()*1000)+2000);
             
             byte btDepto=(byte) ((Math.random()*5)+1);
             
-            float shrTotal=(float) ((ftSueldos+fBonificaciones+shrComisiones)-(shrIGSS+isr+fBancoTrabajadores));
+            float shrTotal=(float) ((ftSueldos+fBonificaciones+ftComisiones)-(ftIGSS+die.getBtIsrRandom()+fBancoTrabajadores));
+            
+            
             
             //y estos a su vez se guardan el cada posicion de la matriz especificada
             matrix[z][0]=ftSueldos;
             matrix[z][1]=fBonificaciones;
-            matrix[z][2]=shrComisiones;
-            matrix[z][3]=shrIGSS;
-            matrix[z][4]=isr;
+            matrix[z][2]=ftComisiones;
+            matrix[z][3]=ftIGSS;
+            matrix[z][4]=die.getBtIsrRandom();
             matrix[z][5]=fBancoTrabajadores;
             matrix[z][6]=shrTotal;
             matrix[z][7]=btDepto;
+            matrix[z][8]=btIsrRandom;
             
         }//fin del ciclo for
         
@@ -93,7 +102,7 @@ public class Departamentos_empleados {
             //System.out.println();println que nos deja
             System.out.print(strNombres[a]+"\t\t ");//primer mensaje que nos muestra el vector de nombres en pantalla
             
-            for(int b=0;b<8;b++){//inicico del segundo ciclo for que recorre las columnas
+            for(int b=0;b<9;b++){//inicico del segundo ciclo for que recorre las columnas
                 
                 System.out.printf(matrix[a][b]+"           ");//mensaje en pantalla que nos muestra la matriz con sus respectivos valores
             }//fin del segundo ciclo for

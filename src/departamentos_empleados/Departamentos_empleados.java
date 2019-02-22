@@ -2,6 +2,10 @@ package departamentos_empleados;
 import javax.swing.JOptionPane;
 public class Departamentos_empleados {
 
+    // Autor Giancarlo
+    
+    
+    
     /* Este programa esta diseniado para calcular los sueldos de los empleados de una empresa en forma aleatoria,
         para esto utilizamos vectores,matrices,que nos ayudan a poder realizar el trabajo de una forma mas rapida
         con la ayuda de varios ciclos for.
